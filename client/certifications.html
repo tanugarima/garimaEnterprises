@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garima Enterprises - Certifications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Dancing+Script:wght@400&display=swap">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
+      background-color: #f5f5f5;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1 0 auto;
+      padding-top: 0;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .contact-item i {
+      color: #fff;
+    }
+    .copyright {
+      font-style: italic;
+    }
+    .copyright-opacity {
+      opacity: 0.7;
+    }
+    section, footer {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .certificate-image {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      background-color: #f9f9f9;
+      transition: transform 0.3s ease;
+    }
+    .certificate-image:hover {
+      transform: scale(1.05);
+    }
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-height: none;
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      opacity: 1;
+    }
+    nav.active {
+      max-height: 500px;
+      opacity: 1;
+    }
+    /* Header Styles */
+    header .container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    nav a {
+      white-space: nowrap;
+    }
+    .header-contact {
+      flex-shrink: 0;
+      max-width: 250px;
+      overflow-wrap: break-word;
+    }
+    /* Footer Styles */
+    footer {
+      width: 100%;
+      background-color: #2d6b69;
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+    }
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .certificate-card {
+        width: 48%;
+        max-width: 400px;
+      }
+      header .container {
+        padding: 1rem;
+      }
+      nav {
+        gap: 0.5rem;
+      }
+      .header-contact {
+        max-width: 200px;
+      }
+      .footer-content {
+        padding: 3.5rem 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        position: relative;
+      }
+      header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+      }
+      .hamburger {
+        display: block;
+      }
+      nav {
+        display: block;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        max-height: 0;
+        opacity: 0;
+        background-color: #2d6b69;
+        padding: 0;
+        margin-top: 0.5rem;
+        overflow: hidden;
+      }
+      nav.active {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1rem;
+      }
+      nav a {
+        text-align: center;
+        padding: 0.5rem 0;
+        display: block;
+      }
+      .header-contact {
+        display: none;
+      }
+      .certificate-card {
+        width: 100%;
+        max-width: 450px;
+      }
+      h2.text-4xl {
+        font-size: 2rem;
+      }
+      section.py-20 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      footer .grid {
+        grid-template-columns: 1fr;
+      }
+      footer .text-right {
+        text-align: center;
+      }
+      .contact-item {
+        justify-content: center;
+      }
+      .contact-item div {
+        text-align: center;
+      }
+      .footer-content {
+        padding: 3rem 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .certificate-card {
+        width: 100% !important;
+      }
+      .certificate-image {
+        height: 240px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .certificate-card {
+        padding: 1rem;
+      }
+      .certificate-image {
+        height: 200px;
+      }
+      h2.text-4xl {
+        font-size: 1.5rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      footer .contact-item p {
+        font-size: 0.85rem;
+      }
+      footer .text-sm {
+        font-size: 0.8rem;
+      }
+      section.py-20 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .hamburger {
+        font-size: 1.2rem;
+      }
+      .footer-content {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .container {
+        max-width: 1200px;
+      }
+      .certificate-card {
+        width: 30%;
+        max-width: 420px;
+      }
+    }
+
+    @media (min-width: 1536px) {
+      .container {
+        max-width: 1400px;
+      }
+      .certificate-card {
+        width: 22%;
+        max-width: 440px;
+      }
+      h2.text-4xl {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased text-gray-900">
+  <!-- Header -->
+  <header class="bg-teal-800 text-white shadow-lg sticky top-0 z-10">
+    <div class="container mx-auto p-4 flex items-center gap-4">
+      <div class="flex items-center justify-center">
+        <img src="public/images/logo.png" alt="Garima Enterprises Logo" class="h-10 w-auto">
+        <span class="ml-2 text-xl">Garima Enterprises</span>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav class="flex flex-col md:flex-row items-center">
+        <a href="index.html" class="hover:text-teal-200 transition-colors">Home</a>
+        <a href="products.html" class="hover:text-teal-200 transition-colors">Products</a>
+        <a href="services.html" class="hover:text-teal-200 transition-colors">Services</a>
+        <a href="contact.html" class="hover:text-teal-200 transition-colors">Contact Us</a>
+        <a href="order.html" class="hover:text-teal-200 transition-colors">Order Now</a>
+        <a href="review.html" class="hover:text-teal-200 transition-colors">Review Us</a>
+        <a href="certifications.html" class="hover:text-teal-200 transition-colors">Certifications</a>
+        <a href="about.html" class="hover:text-teal-200 transition-colors">About</a>
+      </nav>
+      <div class="header-contact text-center md:text-right text-sm">
+        <p>7500034034, 9457005156</p>
+        <div class="flex items-center justify-center md:justify-end gap-2">
+          <a href="mailto:garimaenterprises75@gmail.com" class="hover:text-teal-200 transition-colors">garimaenterprises75@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Certifications Section -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-10 fade-in">Our Certifications</h2>
+        <div class="flex flex-wrap justify-center gap-6">
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Certificate of Compliance</h3>
+            <img src="public\images\Cerification of Compliance.jpg" alt="Certificate of Compliance" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Cerification of Compliance.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Environment Management System</h3>
+            <img src="public\images\Environment Management System_page-0001.jpg" alt="Environment Management System" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Environment Management System.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Iron and Steel Product in general</h3>
+            <img src="public\images\Iron and Steel Products in general_page-0001.jpg" alt="Iron and Steel Product in general" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Iron and Steel Products in general.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Iron ores — Determination of total content</h3>
+            <img src="public\images\Iron ores - Determination of total iron content_page-0001.jpg" alt="Iron ores — Determination of total iron content (2)" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Iron ores - Determination of total iron content.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Iron ores — Determination of total content</h3>
+            <img src="public\images\Iron ores — Determination of total iron content (2)_page-0001.jpg" alt="Iron ores — Determination of total iron content" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Iron ores — Determination of total iron content (2).pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Machines and Equipments</h3>
+            <img src="public\images\Machines and Equipments_page-0001.jpg" alt="Machines and Equipments" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Machines and Equipments.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Occupational Health & Safety Management System</h3>
+            <img src="public\images\Occupational Health & Safety Management System_page-0001.jpg" alt="Occupational Health & Safety Management System" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Occupational Health & Safety Management System.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Quality Management Systems</h3>
+            <img src="public\images\Quality Management Systems (QMS)_page-0001.jpg" alt="Quality Management Systems (QMS)" class="certificate-image rounded mb-4">
+            <a href="public/certificates/Quality Management Systems (QMS).pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Quality requirements metallic materials</h3>
+            <img src="public\images\Quality requirements metallic materials_page-0001.jpg" alt="Quality requirements metallic materials" class="certificate-image rounded mb-4">
+            <a href="public\certificates\Quality requirements metallic materials.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">WHO-GMP</h3>
+            <img src="public/images/WHO-GMP_page-0001.jpg" alt="WHO-GMP" class="certificate-image rounded mb-4">
+            <a href="public\certificates\WHO-GMP.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 text-center md:text-left text-white">Contact Us</h3>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <p class="text-sm text-white">7500034034, 9457005156</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div class="text-sm text-white flex items-center gap-2">
+              <a href="mailto:garimaenterprises75@gmail.com" class="hover:text-teal-200 transition-colors">garimaenterprises75@gmail.com</a>
+              <span class="text-gray-400">|</span>
+              <a href="contact.html" class="hover:text-teal-200 transition-colors">Contact Us</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="text-sm text-white">
+              <p class="font-semibold">Office Address:</p>
+              <p>4/49,50 Awas Vikas Colony, Agra Road, Hathras, Uttar Pradesh, 204101</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-industry"></i>
+            <div class="text-sm text-white">
+              <p class="font-semibold">Factory Address:</p>
+              <p>Village Tipras, Jalesar Road, Hathras, Uttar Pradesh, 204101</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center md:text-right">
+          <h3 class="text-2xl font-bold mb-4 text-white">Quick Links</h3>
+          <a href="products.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Products</a>
+          <a href="services.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Services</a>
+          <a href="contact.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Contact Us</a>
+          <a href="order.html" class="block text-sm text-white hover:text-teal-700 transition-colors">Order Now</a>
+          <a href="review.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Review Us</a>
+          <a href="certifications.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Certifications</a>
+          <a href="about.html" class="block text-sm text-white hover:text-teal-200 transition-colors">About</a>
+        </div>
+      </div>
+      <div class="mt-12 text-center text-sm">
+        <p class="copyright text-white copyright-opacity">© 2025 Garima Enterprises. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hamburger menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+
+      if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+          nav.classList.toggle('active');
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            nav.classList.remove('active');
+          });
+        });
+
+        // Ensure nav is visible on larger screens and collapsed on smaller screens
+        const checkViewport = () => {
+          if (window.innerWidth > 768) {
+            nav.classList.remove('active');
+            nav.style.maxHeight = 'none';
+            nav.style.opacity = '1';
+          } else {
+            if (!nav.classList.contains('active')) {
+              nav.style.maxHeight = '0';
+              nav.style.opacity = '0';
+            }
+          }
+        };
+        window.addEventListener('resize', checkViewport);
+        checkViewport();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garima Enterprises - Products</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
+      background-color: #f5f5f5;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1 0 auto;
+      padding-top: 0;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .contact-item i {
+      color: #fff;
+    }
+    .copyright {
+      font-style: italic;
+    }
+    section {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    /* Button Box Styles */
+    .button-box {
+      background-color: #e6fffa;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    /* Button Styles */
+    .button {
+      display: inline-block;
+      background-color: #b2f5ea;
+      color: #2c7a7b;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .button:hover {
+      background-color: #81e6d9;
+      transform: translateY(-1px);
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 50;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-content .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 1.5rem;
+      color: #333;
+      cursor: pointer;
+    }
+    .modal-content .close-btn:hover {
+      color: #e53e3e;
+    }
+    .modal-images {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .modal-images img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      object-fit: contain;
+    }
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-height: none;
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      opacity: 1;
+    }
+    nav.active {
+      max-height: 500px;
+      opacity: 1;
+    }
+    /* Header Styles */
+    header .container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    nav a {
+      white-space: nowrap;
+    }
+    .header-contact {
+      flex-shrink: 0;
+      max-width: 250px;
+      overflow-wrap: break-word;
+    }
+    /* Footer Styles */
+    footer {
+      width: 100%;
+      background-color: #2d6b69;
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .product-card {
+        width: 48%;
+        max-width: 300px;
+      }
+      header .container {
+        padding: 1rem;
+      }
+      nav {
+        gap: 0.5rem;
+      }
+      .modal-content {
+        padding: 1rem;
+      }
+      .footer-content {
+        padding: 3.5rem 2.5rem;
+      }
+      .header-contact {
+        max-width: 200px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        position: relative;
+      }
+      header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+      }
+      .hamburger {
+        display: block;
+      }
+      nav {
+        display: block; /* Use block to allow proper collapsing */
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        max-height: 0; /* Collapsed by default */
+        opacity: 0; /* Hidden by default */
+        background-color: #2d6b69;
+        padding: 0;
+        margin-top: 0.5rem;
+        overflow: hidden; /* Prevent content from showing when collapsed */
+      }
+      nav.active {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1rem;
+      }
+      nav a {
+        text-align: center;
+        padding: 0.5rem 0;
+        display: block; /* Ensure links take full width */
+      }
+      .header-contact {
+        display: none;
+      }
+      .modal-images {
+        flex-direction: column;
+      }
+      .modal-images img {
+        max-width: 100%;
+      }
+      .button-box {
+        padding: 0.4rem;
+      }
+      .button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+      }
+      .product-card {
+        width: 100%;
+        max-width: 350px;
+      }
+      h2.text-4xl {
+        font-size: 2rem;
+      }
+      section.py-20 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      footer .grid {
+        grid-template-columns: 1fr;
+      }
+      footer .text-right {
+        text-align: center;
+      }
+      .footer-content {
+        padding: 3rem 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .product-card {
+        width: 100%;
+        padding: 1rem;
+      }
+      .product-card img {
+        height: 150px;
+      }
+      h2.text-4xl {
+        font-size: 1.5rem;
+      }
+      p.text-lg {
+        font-size: 1rem;
+      }
+      .button {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .button-box {
+        padding: 0.3rem;
+      }
+      .modal-content {
+        padding: 0.75rem;
+        max-height: 85vh;
+      }
+      .modal-content .close-btn {
+        font-size: 1.2rem;
+        top: 0.3rem;
+        right: 0.3rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      footer .contact-item p {
+        font-size: 0.85rem;
+      }
+      footer .text-sm {
+        font-size: 0.8rem;
+      }
+      section.py-20 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .hamburger {
+        font-size: 1.2rem;
+      }
+      .footer-content {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .container {
+        max-width: 1200px;
+      }
+      .product-card {
+        width: 30%;
+        max-width: 320px;
+      }
+      .modal-images img {
+        max-width: 400px;
+      }
+    }
+
+    @media (min-width: 1536px) {
+      .container {
+        max-width: 1400px;
+      }
+      .product-card {
+        width: 22%;
+        max-width: 340px;
+      }
+      h2.text-4xl {
+        font-size: 3rem;
+      }
+      .modal-images img {
+        max-width: 500px;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased text-gray-900">
+  <!-- Header -->
+  <header class="bg-teal-800 text-white shadow-lg sticky top-0 z-10">
+    <div class="container mx-auto p-4 flex items-center gap-4">
+      <div class="flex items-center justify-center">
+        <img src="public/images/logo.png" alt="Garima Enterprises Logo" class="h-10 w-auto">
+        <span class="ml-2 text-xl">Garima Enterprises</span>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav class="flex flex-col md:flex-row items-center">
+        <a href="index.html" class="hover:text-teal-200 transition-colors">Home</a>
+        <a href="products.html" class="hover:text-teal-200 transition-colors">Products</a>
+        <a href="services.html" class="hover:text-teal-200 transition-colors">Services</a>
+        <a href="contact.html" class="hover:text-teal-200 transition-colors">Contact Us</a>
+        <a href="order.html" class="hover:text-teal-200 transition-colors">Order Now</a>
+        <a href="review.html" class="hover:text-teal-200 transition-colors">Review Us</a>
+        <a href="certifications.html" class="hover:text-teal-200 transition-colors">Certifications</a>
+        <a href="about.html" class="hover:text-teal-200 transition-colors">About</a>
+      </nav>
+      <div class="header-contact text-center md:text-right text-sm">
+        <p>7500034034, 9457005156</p>
+        <div class="flex items-center justify-center md:justify-end gap-2">
+          <a href="mailto:garimaenterprises75@gmail.com" class="hover:text-teal-200 transition-colors">garimaenterprises75@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Products Section -->
+    <section class="py-20 px-4 bg-gray-100">
+      <div class="container mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 fade-in">Our Products</h2>
+        <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto fade-in">
+          Explore our wide range of high-quality products designed to meet your agricultural and industrial needs.
+        </p>
+        <div class="flex flex-wrap justify-center gap-8">
+          <!-- Cement Bricks -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public/images/brick.jpg" alt="Cement Bricks" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">Cement Bricks</h3>
+            <p class="text-gray-600 mb-4">High-quality cement bricks for construction needs.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public/images/brick.jpg" 
+                   data-specs-img="public/images/specs-cement-bricks.jpg">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Square Iron Tree Guard -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public/images/square iron treeguard.jpg" alt="Square Iron Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">Square Iron Tree Guard</h3>
+            <p class="text-gray-600 mb-4">Protective guard for trees with a square design.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public/images/square iron treeguard.jpg" 
+                   data-specs-img="public/images/square iron treeguard.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- M.S. Circular Tree Guard -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public\images\ms circular treeguard.jpg" alt="M.S. Circular Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">M.S. Circular Tree Guard</h3>
+            <p class="text-gray-600 mb-4">Circular tree guard made from mild steel.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public\images\ms circular treeguard.jpg" 
+                   data-specs-img="public/images/circular.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Double Piece Tree Guard -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public/images/double piece.JPG" alt="Double Piece Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">Double Piece Tree Guard</h3>
+            <p class="text-gray-600 mb-4">Two-piece tree guard for easy installation.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public/images/double piece.JPG" 
+                   data-specs-img="public/images/treeguard double piece.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- R.C.C. Mesh Tree Guard -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public\images\rcc mesh treeguard.jpg" alt="R.C.C. Mesh Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">R.C.C. Mesh Tree Guard</h3>
+            <p class="text-gray-600 mb-4">Reinforced concrete tree guard with mesh design.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public\images\rcc mesh treeguard.jpg" 
+                   data-specs-img="public/images/rcc mesh treeguard.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Iron Tree Guard -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public\images\iron.jpg" alt="Iron Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">Iron Tree Guard</h3>
+            <p class="text-gray-600 mb-4">Sturdy iron tree guard for plant protection.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public\images\iron.jpg" 
+                   data-specs-img="public/images/iron tree guard.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- HDPE Round Tree Guard -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public\images\hdpe.png" alt="HDPE Round Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">HDPE Round Tree Guard</h3>
+            <p class="text-gray-600 mb-4">Durable HDPE tree guard with round design.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public\images\hdpe.png" 
+                   data-specs-img="public/images/hdpe round tree guard.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RCC Tree Guard -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public\images\rcc treeguard (2).jpg" alt="RCC Fencing Pillar" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">RCC Tree Guard</h3>
+            <p class="text-gray-600 mb-4">Reinforced concrete tree guard with design</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public\images\rcc treeguard (2).jpg" 
+                   data-specs-img="public\images\rcc treeguard.jpg">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RCC Fencing Pillar -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public\images\rcc fencing pillar.jpg" alt="RCC Fencing Pillar" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">RCC Fencing Pillar</h3>
+            <p class="text-gray-600 mb-4">Reinforced concrete pillars for fencing.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public\images\rcc fencing pillar.jpg" 
+                   data-specs-img="public/images/rcc fencing pillar.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barbed Wire -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public/images/barbed.jpg" alt="RCC Fencing Pillar" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">Galvanized Barbed Wire</h3>
+            <p class="text-gray-600 mb-4">Steel fencing wire constructed with sharp edges</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public/images/barbed.jpg" 
+                   data-specs-img="public/images/rcctree2.jpg">View Specifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Black Plastic Nursery Bags -->
+          <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
+            <img src="public\images\nursery.png" alt="Black Plastic Nursery Bags" class="h-48 w-full object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-teal-800 mb-2">Black Plastic Nursery Bags</h3>
+            <p class="text-gray-600 mb-4">Durable nursery bags for plant growth.</p>
+            <div class="flex justify-center gap-4">
+              <div class="button-box">
+                <a href="order.html" class="button">Order Now</a>
+              </div>
+              <div class="button-box">
+                <a href="#" class="button view-specs" 
+                   data-product-img="public\images\nursery.png" 
+                   data-specs-img="public/images/black nursery plastic bags.png">View Specifications</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for Specifications -->
+  <div id="specs-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">×</span>
+      <div class="modal-images">
+        <img id="modal-product-img" src="" alt="Product Image">
+        <img id="modal-specs-img" src="" alt="Specifications Image">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 text-center md:text-left text-white">Contact Us</h3>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <p class="text-sm text-white">7500034034, 9457005156</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div class="text-sm text-white">
+              <a href="mailto:garimaenterprises75@gmail.com" class="hover:text-teal-200 transition-colors">garimaenterprises75@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="text-sm text-white">
+              <p class="font-semibold">Office Address:</p>
+              <p>4/49,50 Awas Vikas Colony, Agra Road, Hathras, Uttar Pradesh, 204101</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-industry"></i>
+            <div class="text-sm text-white">
+              <p class="font-semibold">Factory Address:</p>
+              <p>Village Tipras, Jalesar Road, Hathras, Uttar Pradesh, 204101</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center md:text-right">
+          <h3 class="text-2xl font-bold mb-4 text-white">Quick Links</h3>
+          <a href="products.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Products</a>
+          <a href="services.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Services</a>
+          <a href="contact.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Contact Us</a>
+          <a href="order.html" class="block text-sm text-white hover:text-teal-700 transition-colors">Order Now</a>
+          <a href="review.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Review Us</a>
+          <a href="certifications.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Certifications</a>
+          <a href="about.html" class="block text-sm text-white hover:text-teal-200 transition-colors">About</a>
+        </div>
+      </div>
+      <div class="mt-12 text-center text-sm">
+        <p class="copyright text-white" style="opacity: 0.7;">© 2025 Garima Enterprises. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Modal and Hamburger Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Modal functionality
+      const modal = document.getElementById('specs-modal');
+      const productImg = document.getElementById('modal-product-img');
+      const specsImg = document.getElementById('modal-specs-img');
+      const closeBtn = document.querySelector('.close-btn');
+      const viewSpecsLinks = document.querySelectorAll('.view-specs');
+
+      viewSpecsLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const productImgSrc = link.getAttribute('data-product-img');
+          const specsImgSrc = link.getAttribute('data-specs-img');
+          productImg.src = productImgSrc;
+          productImg.alt = link.closest('.product-card').querySelector('h3').textContent + ' Image';
+          specsImg.src = specsImgSrc;
+          specsImg.alt = link.closest('.product-card').querySelector('h3').textContent + ' Specifications';
+          modal.style.display = 'flex';
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+
+      // Hamburger menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+
+      if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+          nav.classList.toggle('active');
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            nav.classList.remove('active');
+          });
+        });
+
+        // Ensure nav is visible on larger screens and collapsed on smaller screens
+        const checkViewport = () => {
+          if (window.innerWidth > 768) {
+            nav.classList.remove('active');
+            nav.style.maxHeight = 'none';
+            nav.style.opacity = '1';
+          } else {
+            // On smaller screens, ensure nav is collapsed unless active
+            if (!nav.classList.contains('active')) {
+              nav.style.maxHeight = '0';
+              nav.style.opacity = '0';
+            }
+          }
+        };
+        window.addEventListener('resize', checkViewport);
+        checkViewport();
+      }
+    });
+  </script>
+</body>
+</html>
