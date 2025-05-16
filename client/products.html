@@ -136,9 +136,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      max-height: none;
-      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
       opacity: 1;
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
     }
     nav.active {
       max-height: 500px;
@@ -149,7 +148,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 2rem; /* Increased gap for more spacing */
     }
     nav a {
       white-space: nowrap;
@@ -173,7 +172,6 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
     /* Responsive Design */
     @media (max-width: 1024px) {
       .product-card {
@@ -182,6 +180,7 @@
       }
       header .container {
         padding: 1rem;
+        gap: 1.5rem; /* Slightly reduced gap for medium screens */
       }
       nav {
         gap: 0.5rem;
@@ -196,7 +195,6 @@
         max-width: 200px;
       }
     }
-
     @media (max-width: 768px) {
       header {
         position: relative;
@@ -205,25 +203,26 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.5rem; /* Reduced gap for small screens */
         padding-bottom: 1rem;
       }
       .hamburger {
         display: block;
       }
       nav {
-        display: block; /* Use block to allow proper collapsing */
+        display: none; /* Hide by default on small screens */
         flex-direction: column;
         gap: 0.75rem;
         width: 100%;
-        max-height: 0; /* Collapsed by default */
-        opacity: 0; /* Hidden by default */
+        max-height: 0;
+        opacity: 0;
         background-color: #2d6b69;
         padding: 0;
         margin-top: 0.5rem;
-        overflow: hidden; /* Prevent content from showing when collapsed */
+        overflow: hidden;
       }
       nav.active {
+        display: flex; /* Show nav when active */
         max-height: 500px;
         opacity: 1;
         padding: 1rem;
@@ -231,7 +230,7 @@
       nav a {
         text-align: center;
         padding: 0.5rem 0;
-        display: block; /* Ensure links take full width */
+        display: block;
       }
       .header-contact {
         display: none;
@@ -270,7 +269,6 @@
         padding: 3rem 2rem;
       }
     }
-
     @media (max-width: 480px) {
       .container {
         padding-left: 1rem;
@@ -325,7 +323,6 @@
         padding: 2.5rem 1.5rem;
       }
     }
-
     @media (min-width: 1280px) {
       .container {
         max-width: 1200px;
@@ -338,7 +335,6 @@
         max-width: 400px;
       }
     }
-
     @media (min-width: 1536px) {
       .container {
         max-width: 1400px;
@@ -412,7 +408,6 @@
               </div>
             </div>
           </div>
-
           <!-- Square Iron Tree Guard -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public/images/square iron treeguard.jpg" alt="Square Iron Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -429,7 +424,6 @@
               </div>
             </div>
           </div>
-
           <!-- M.S. Circular Tree Guard -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public\images\ms circular treeguard.jpg" alt="M.S. Circular Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -446,7 +440,6 @@
               </div>
             </div>
           </div>
-
           <!-- Double Piece Tree Guard -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public/images/double piece.JPG" alt="Double Piece Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -463,7 +456,6 @@
               </div>
             </div>
           </div>
-
           <!-- R.C.C. Mesh Tree Guard -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public\images\rcc mesh treeguard.jpg" alt="R.C.C. Mesh Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -480,7 +472,6 @@
               </div>
             </div>
           </div>
-
           <!-- Iron Tree Guard -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public\images\iron.jpg" alt="Iron Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -497,7 +488,6 @@
               </div>
             </div>
           </div>
-
           <!-- HDPE Round Tree Guard -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public\images\hdpe.png" alt="HDPE Round Tree Guard" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -514,7 +504,6 @@
               </div>
             </div>
           </div>
-
           <!-- RCC Tree Guard -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public\images\rcc treeguard (2).jpg" alt="RCC Fencing Pillar" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -531,7 +520,6 @@
               </div>
             </div>
           </div>
-
           <!-- RCC Fencing Pillar -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public\images\rcc fencing pillar.jpg" alt="RCC Fencing Pillar" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -548,7 +536,6 @@
               </div>
             </div>
           </div>
-
           <!-- Barbed Wire -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public/images/barbed.jpg" alt="RCC Fencing Pillar" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -565,7 +552,6 @@
               </div>
             </div>
           </div>
-
           <!-- Black Plastic Nursery Bags -->
           <div class="product-card bg-white p-6 rounded-lg shadow-lg w-72 fade-in">
             <img src="public\images\nursery.png" alt="Black Plastic Nursery Bags" class="h-48 w-full object-cover rounded-lg mb-4">
@@ -694,18 +680,9 @@
           });
         });
 
-        // Ensure nav is visible on larger screens and collapsed on smaller screens
         const checkViewport = () => {
           if (window.innerWidth > 768) {
             nav.classList.remove('active');
-            nav.style.maxHeight = 'none';
-            nav.style.opacity = '1';
-          } else {
-            // On smaller screens, ensure nav is collapsed unless active
-            if (!nav.classList.contains('active')) {
-              nav.style.maxHeight = '0';
-              nav.style.opacity = '0';
-            }
           }
         };
         window.addEventListener('resize', checkViewport);

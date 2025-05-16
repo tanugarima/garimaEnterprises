@@ -6,18 +6,27 @@
   <title>Garima Enterprises - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <!-- Google Fonts: Open Sans and Dancing Script -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Dancing+Script:wght@400&display=swap">
   <style>
-    /* Apply fonts */
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Open Sans', sans-serif;
       color: #333;
       background-color: #f5f5f5;
       line-height: 1.6;
+      overflow-x: hidden;
     }
-
-    /* Custom styles for animations and background */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1 0 auto;
+      padding-top: 0;
+    }
     .fade-in {
       animation: fadeIn 1s ease-in-out;
     }
@@ -27,10 +36,32 @@
     }
     .hero-bg {
       position: relative;
-      
+      display: flex;
+      flex-direction: row;
+      height: 80vh;
+      /* Use the working placeholder image for now */
+      background-image: url('https://picsum.photos/1200/800');
+      background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
-      background-position: center;
+      background-color: #e5e7eb; /* Fallback color if image fails to load */
+      /* To use your local image, follow these steps:
+         1. Ensure 'public/images/bg.jpg' exists relative to index.html.
+            - If index.html is in the root directory, the structure should be:
+              /root
+                index.html
+                /public
+                  /images
+                    bg.jpg
+         2. Check for case sensitivity (e.g., 'bg.jpg' vs 'BG.jpg', 'images' vs 'Images').
+         3. If the path is different, adjust it accordingly. For example:
+            - If bg.jpg is in the root directory, use: url('bg.jpg')
+            - If bg.jpg is in an 'assets' folder, use: url('assets/bg.jpg')
+         4. Uncomment the line below and comment out the placeholder image.
+      */
+      /* background-image: url('public/images/bg.jpg'); */
     }
+    /* Add a dark overlay to make text readable */
     .hero-bg::before {
       content: '';
       position: absolute;
@@ -38,13 +69,18 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('public/images/bg.jpg');
-      background-size: cover;
-      background-position: center;
-      z-index: -1;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+      z-index: 1;
     }
-
-    /* About Section: Constrain content to a square-like box */
+    /* Ensure content is above the overlay */
+    .hero-bg > div {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-image {
+      height: 100%;
+      width: 100%;
+    }
     .about-content {
       max-width: 800px;
       margin: 0 auto;
@@ -56,8 +92,6 @@
     .about-content p {
       line-height: 2;
     }
-
-    /* Footer: Add margins to icons and text */
     .contact-item {
       display: flex;
       align-items: center;
@@ -67,29 +101,221 @@
     .contact-item i {
       color: #fff;
     }
-
-    /* Footer: Cursive font for copyright */
     .copyright {
       font-style: italic;
     }
-
-    /* Ensure sections don't stretch to edges */
+    .copyright-opacity {
+      opacity: 0.7;
+    }
     section, footer {
       margin-left: auto;
       margin-right: auto;
     }
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 1;
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+    }
+    nav.active {
+      max-height: 500px;
+      opacity: 1;
+    }
+    /* Header Styles */
+    header .container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    nav a {
+      white-space: nowrap;
+    }
+    .header-contact {
+      flex-shrink: 0;
+      max-width: 250px;
+      overflow-wrap: break-word;
+    }
+    /* Footer Styles */
+    footer {
+      width: 100%;
+      background-color: #2d6b69;
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+    }
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      header .container {
+        padding: 1rem;
+        gap: 1.5rem;
+      }
+      nav {
+        gap: 0.5rem;
+      }
+      .header-contact {
+        max-width: 200px;
+      }
+      .footer-content {
+        padding: 3.5rem 2.5rem;
+      }
+      .hero-bg {
+        flex-direction: column;
+        height: auto;
+      }
+      .hero-bg > div {
+        width: 100% !important;
+      }
+      .hero-image {
+        height: 40vh;
+      }
+    }
+    @media (max-width: 768px) {
+      header {
+        position: relative;
+      }
+      header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+      }
+      .hamburger {
+        display: block;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        max-height: 0;
+        opacity: 0;
+        background-color: #2d6b69;
+        padding: 0;
+        margin-top: 0.5rem;
+        overflow: hidden;
+      }
+      nav.active {
+        display: flex;
+        max-height: 500px;
+        opacity: 1;
+        padding: 1rem;
+      }
+      nav a {
+        text-align: center;
+        padding: 0.5rem 0;
+        display: block;
+      }
+      .header-contact {
+        display: none;
+      }
+      h2.text-5xl {
+        font-size: 2.5rem;
+      }
+      section.py-20, section.py-32 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      footer .grid {
+        grid-template-columns: 1fr;
+      }
+      footer .text-right {
+        text-align: center;
+      }
+      .contact-item {
+        justify-content: center;
+      }
+      .contact-item div {
+        text-align: center;
+      }
+      .footer-content {
+        padding: 3rem 2rem;
+      }
+      .about-content {
+        padding: 2rem;
+      }
+      .hero-bg .w-1\/2:last-child {
+        padding: 2rem;
+      }
+      .hero-bg h1.text-6xl {
+        font-size: 2.5rem;
+      }
+      .hero-bg p.text-xl {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      h2.text-5xl {
+        font-size: 2rem;
+      }
+      p.text-xl, p.text-lg {
+        font-size: 1rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      footer .contact-item p {
+        font-size: 0.85rem;
+      }
+      footer .text-sm {
+        font-size: 0.8rem;
+      }
+      section.py-20, section.py-32 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .hamburger {
+        font-size: 1.2rem;
+      }
+      .footer-content {
+        padding: 2.5rem 1.5rem;
+      }
+      .hero-image {
+        height: 30vh;
+      }
+    }
+    @media (min-width: 1280px) {
+      .container {
+        max-width: 1200px;
+      }
+    }
+    @media (min-width: 1536px) {
+      .container {
+        max-width: 1400px;
+      }
+      h2.text-5xl {
+        font-size: 3.5rem;
+      }
+    }
   </style>
 </head>
 <body class="antialiased text-gray-900">
-  <!-- Navigation -->
+  <!-- Header -->
   <header class="bg-teal-800 text-white shadow-lg sticky top-0 z-10">
-    <div class="container mx-auto p-4 flex justify-between items-center">
-      <div class="flex items-center">
-        <!-- Logo Placeholder -->
+    <div class="container mx-auto p-4 flex items-center gap-4">
+      <div class="flex items-center justify-center">
         <img src="public/images/logo.png" alt="Garima Enterprises Logo" class="h-10 w-auto">
         <span class="ml-2 text-xl">Garima Enterprises</span>
       </div>
-      <nav class="space-x-6">
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav class="flex flex-col md:flex-row items-center">
         <a href="index.html" class="hover:text-teal-200 transition-colors">Home</a>
         <a href="products.html" class="hover:text-teal-200 transition-colors">Products</a>
         <a href="services.html" class="hover:text-teal-200 transition-colors">Services</a>
@@ -99,132 +325,159 @@
         <a href="certifications.html" class="hover:text-teal-200 transition-colors">Certifications</a>
         <a href="about.html" class="hover:text-teal-200 transition-colors">About</a>
       </nav>
-      <div class="text-right">
-        <p class="text-sm">7500034034, 9457005156</p>
-        <a href="mailto:garimaenterprises75@gmail.com?subject=Inquiry%20from%20Website&body=Hello%2C%20I%20have%20a%20question%20about%20your%20products." class="text-sm hover:text-teal-200 transition-colors" onclick="if (!window.confirm('Opening email client... If this doesn’t work, please email us at garimaenterprises75@gmail.com.')) return false;">garimaenterprises75@gmail.com</a>
+      <div class="header-contact text-center md:text-right text-sm">
+        <p>7500034034, 9457005156</p>
+        <div class="flex items-center justify-center md:justify-end gap-2">
+          <a href="mailto:garimaenterprises75@gmail.com?subject=Inquiry%20from%20Website&body=Hello%2C%20I%20have%20a%20question%20about%20your%20products." class="hover:text-teal-200 transition-colors" onclick="if (!window.confirm('Opening email client... If this doesn’t work, please email us at garimaenterprises75@gmail.com.')) return false;">garimaenterprises75@gmail.com</a>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-bg text-white h-[80vh] flex">
-  <!-- Left Half with Image -->
-   
-  <div class="w-1/2 relative">
-    <!-- Background image handled globally in .hero-bg::before -->
-  </div>
-
-  <!-- Right Half with Centered Content -->
-  <div class="w-1/2 flex justify-center items-center p-12">
-    <div class="text-center max-w-xl">
-      <h1 class="text-6xl font-bold mb-4">Welcome to Garima Enterprises</h1>
-      <p class="text-xl mb-8 text-center">Your trusted partner in manufacturing a wide range of high-quality products.</p>
-      <a href="contact.html" class="inline-block bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-lg shadow-lg transition-all duration-300 font-bold">
-        Contact Us
-      </a>
-    </div>
-  </div>
-</section>
-
-
-  <!-- About Section -->
-  <section class="py-20 px-4">
-    <div class="container mx-auto text-center fade-in">
-      <div class="about-content">
-        <h2 class="text-5xl font-bold mb-6">About Garima Enterprises</h2>
-        <br>
-        <br>
-        <p class="text-xl text-gray-600 mb-4">We specialize in manufacturing essential agricultural products, including iron tree guards, RCC tree guards, and vermicompost, tailored to enhance farming efficiency.</p>
-        <br><br>
-        <p class="text-xl font-semibold text-gray-800">30 years of experience | Environment-friendly practices</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us Section -->
-  <section class="py-32 bg-gray-100">
-    <div class="container mx-auto text-center">
-      <h2 class="text-5xl font-bold mb-10 fade-in">Few Reasons Why People Choose Us!</h2>
-      <div class="flex flex-wrap justify-center gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
-          <i class="fas fa-shield-alt text-teal-600 text-4xl mb-4"></i>
-          <h3 class="font-semibold text-2xl mb-2">Trusted Service Center</h3>
-          <p class="text-gray-600">Reliable solutions for all your needs.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
-          <i class="fas fa-tag text-teal-600 text-4xl mb-4"></i>
-          <h3 class="font-semibold text-2xl mb-2">Reasonable Price</h3>
-          <p class="text-gray-600">Affordable rates for quality products.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
-          <i class="fas fa-headset text-teal-600 text-4xl mb-4"></i>
-          <h3 class="font-semibold text-2xl mb-2">24/7 Support</h3>
-          <p class="text-gray-600">Always available to assist you.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
-          <i class="fas fa-users text-teal-600 text-4xl mb-4"></i>
-          <h3 class="font-semibold text-2xl mb-2">Expert Technicians</h3>
-          <p class="text-gray-600">Skilled professionals at your service.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
-          <i class="fas fa-star text-teal-600 text-4xl mb-4"></i>
-          <h3 class="font-semibold text-2xl mb-2">Best Quality Services</h3>
-          <p class="text-gray-600">Top-notch quality in every project.</p>
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-bg text-white">
+      <!-- Left Half (No background here anymore) -->
+      <div class="w-1\/2 hero-image"></div>
+      <!-- Right Half with Centered Content -->
+      <div class="w-1\/2 flex justify-center items-center p-12">
+        <div class="text-center max-w-xl">
+          <h1 class="text-6xl font-bold mb-4">Welcome to Garima Enterprises</h1>
+          <p class="text-xl mb-8 text-center">Your trusted partner in manufacturing a wide range of high-quality products.</p>
+          <a href="contact.html" class="inline-block bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-lg shadow-lg transition-all duration-300 font-bold">
+            Contact Us
+          </a>
         </div>
       </div>
-      <br>
-      <br>
-      <p class="mt-10 text-lg text-gray-600 fade-in">We provide innovative solutions that enhance the quality and efficiency of our clients’ projects.</p>
-    </div>
-  </section>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto text-center fade-in">
+        <div class="about-content">
+          <h2 class="text-5xl font-bold mb-6">About Garima Enterprises</h2>
+          <br>
+          <br>
+          <p class="text-xl text-gray-600 mb-4">We specialize in manufacturing essential agricultural products, including iron tree guards, RCC tree guards, and vermicompost, tailored to enhance farming efficiency.</p>
+          <br><br>
+          <p class="text-xl font-semibold text-gray-800">30 years of experience | Environment-friendly practices</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-32 bg-gray-100">
+      <div class="container mx-auto text-center">
+        <h2 class="text-5xl font-bold mb-10 fade-in">Few Reasons Why People Choose Us!</h2>
+        <div class="flex flex-wrap justify-center gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <i class="fas fa-shield-alt text-teal-600 text-4xl mb-4"></i>
+            <h3 class="font-semibold text-2xl mb-2">Trusted Service Center</h3>
+            <p class="text-gray-600">Reliable solutions for all your needs.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <i class="fas fa-tag text-teal-600 text-4xl mb-4"></i>
+            <h3 class="font-semibold text-2xl mb-2">Reasonable Price</h3>
+            <p class="text-gray-600">Affordable rates for quality products.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <i class="fas fa-headset text-teal-600 text-4xl mb-4"></i>
+            <h3 class="font-semibold text-2xl mb-2">24/7 Support</h3>
+            <p class="text-gray-600">Always available to assist you.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <i class="fas fa-users text-teal-600 text-4xl mb-4"></i>
+            <h3 class="font-semibold text-2xl mb-2">Expert Technicians</h3>
+            <p class="text-gray-600">Skilled professionals at your service.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg w-72 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <i class="fas fa-star text-teal-600 text-4xl mb-4"></i>
+            <h3 class="font-semibold text-2xl mb-2">Best Quality Services</h3>
+            <p class="text-gray-600">Top-notch quality in every project.</p>
+          </div>
+        </div>
+        <br>
+        <br>
+        <p class="mt-10 text-lg text-gray-600 fade-in">We provide innovative solutions that enhance the quality and efficiency of our clients’ projects.</p>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-teal-800 text-white py-12">
-    <div class="container mx-auto px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-10">
-        <!-- Contact Us (Left) -->
+  <footer>
+    <div class="footer-content">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <h3 class="text-2xl font-bold mb-4">Contact Us</h3>
+          <h3 class="text-2xl font-bold mb-4 text-center md:text-left text-white">Contact Us</h3>
           <div class="contact-item">
             <i class="fas fa-phone-alt"></i>
-            <p class="text-sm">7500034034, 9457005156</p>
+            <p class="text-sm text-white">7500034034, 9457005156</p>
           </div>
           <div class="contact-item">
             <i class="fas fa-envelope"></i>
-            <a href="mailto:Garima@gmail.com" class="text-sm hover:text-teal-200 transition-colors">garimaenterprises75@gmail.com</a>
+            <div class="text-sm text-white">
+              <a href="mailto:garimaenterprises75@gmail.com" class="hover:text-teal-200 transition-colors">garimaenterprises75@gmail.com</a>
+            </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
-            <div class="text-sm">
+            <div class="text-sm text-white">
               <p class="font-semibold">Office Address:</p>
               <p>4/49,50 Awas Vikas Colony, Agra Road, Hathras, Uttar Pradesh, 204101</p>
             </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-industry"></i>
-            <div class="text-sm">
+            <div class="text-sm text-white">
               <p class="font-semibold">Factory Address:</p>
-              <p>Village Tipras, Jalesar Road, Hathras, Uttar Pradesh,204101</p>
+              <p>Village Tipras, Jalesar Road, Hathras, Uttar Pradesh, 204101</p>
             </div>
           </div>
         </div>
-        <!-- Quick Links (Right) -->
-        <div class="md:text-right px-10">
-          <h3 class="text-2xl font-bold mb-4">Quick Links</h3>
-          <a href="products.html" class="block text-sm hover:text-teal-200 transition-colors">Products</a>
-          <a href="services.html" class="block text-sm hover:text-teal-200 transition-colors">Services</a>
-          <a href="contact.html" class="block text-sm hover:text-teal-200 transition-colors">Contact Us</a>
-          <a href="order.html" class="block text-sm hover:text-teal-200 transition-colors">Order Now</a>
-          <a href="review.html" class="block text-sm hover:text-teal-200 transition-colors">Review Us</a>
-          <a href="certifications.html" class="block text-sm hover:text-teal-200 transition-colors">Certifications</a>
-          <a href="about.html" class="block text-sm hover:text-teal-200 transition-colors">About</a>
+        <div class="text-center md:text-right">
+          <h3 class="text-2xl font-bold mb-4 text-white">Quick Links</h3>
+          <a href="products.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Products</a>
+          <a href="services.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Services</a>
+          <a href="contact.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Contact Us</a>
+          <a href="order.html" class="block text-sm text-white hover:text-teal-700 transition-colors">Order Now</a>
+          <a href="review.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Review Us</a>
+          <a href="certifications.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Certifications</a>
+          <a href="about.html" class="block text-sm text-white hover:text-teal-200 transition-colors">About</a>
         </div>
       </div>
-      <br><br>
       <div class="mt-12 text-center text-sm">
-        <p class="copyright" style="opacity: 0.7;">© 2025 Garima Enterprises. All rights reserved.</p>
+        <p class="copyright text-white copyright-opacity">© 2025 Garima Enterprises. All rights reserved.</p>
       </div>
     </div>
   </footer>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+
+      if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+          nav.classList.toggle('active');
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            nav.classList.remove('active');
+          });
+        });
+
+        const checkViewport = () => {
+          if (window.innerWidth > 768) {
+            nav.classList.remove('active');
+          }
+        };
+        window.addEventListener('resize', checkViewport);
+        checkViewport();
+      }
+    });
+  </script>
 </body>
 </html>
