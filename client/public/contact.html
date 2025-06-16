@@ -258,6 +258,20 @@
             <input type="email" id="email" name="email" placeholder="Your Email" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600">
           </div>
           <div class="mb-6">
+            <label for="phone" class="block text-left mb-1 font-semibold">Your Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600">
+          </div>
+          <div class="mb-6">
+            <label for="callBackTime" class="block text-left mb-1 font-semibold">Preferred Call-Back Time</label>
+            <select id="callBackTime" name="callBackTime" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600">
+              <option value="" disabled selected>Select a Time</option>
+              <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+              <option value="Afternoon (12 PM - 3 PM)">Afternoon (12 PM - 3 PM)</option>
+              <option value="Late Afternoon (3 PM - 6 PM)">Late Afternoon (3 PM - 6 PM)</option>
+              <option value="Evening (6 PM - 9 PM)">Evening (6 PM - 9 PM)</option>
+            </select>
+          </div>
+          <div class="mb-6">
             <label for="message" class="block text-left mb-1 font-semibold">Your Message</label>
             <textarea id="message" name="message" placeholder="Your Message" required class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600" rows="6"></textarea>
           </div>
