@@ -63,6 +63,45 @@
     .certificate-image:hover {
       transform: scale(1.05);
     }
+    /* Carousel Styles */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+    }
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel img {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      background-color: #f9f9f9;
+      flex-shrink: 0;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color 0.3s ease;
+    }
+    .carousel-btn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .prev-btn {
+      left: 10px;
+    }
+    .next-btn {
+      right: 10px;
+    }
     /* Hamburger Menu Styles */
     .hamburger {
       display: none;
@@ -86,7 +125,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 2rem; /* Increased gap for more spacing */
+      gap: 2rem;
     }
     nav a {
       white-space: nowrap;
@@ -114,7 +153,7 @@
       }
       header .container {
         padding: 1rem;
-        gap: 1.5rem; /* Slightly reduced gap for medium screens */
+        gap: 1.5rem;
       }
       nav {
         gap: 0.5rem;
@@ -134,14 +173,14 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 0.5rem; /* Reduced gap for small screens */
+        gap: 0.5rem;
         padding-bottom: 1rem;
       }
       .hamburger {
         display: block;
       }
       nav {
-        display: none; /* Hide by default on small screens */
+        display: none;
         flex-direction: column;
         gap: 0.75rem;
         width: 100%;
@@ -153,7 +192,7 @@
         overflow: hidden;
       }
       nav.active {
-        display: flex; /* Show nav when active */
+        display: flex;
         max-height: 500px;
         opacity: 1;
         padding: 1rem;
@@ -197,7 +236,10 @@
       .certificate-card {
         width: 100% !important;
       }
-      .certificate-image {
+      .certificate-image, .carousel-container {
+        height: 240px;
+      }
+      .carousel img {
         height: 240px;
       }
     }
@@ -209,7 +251,10 @@
       .certificate-card {
         padding: 1rem;
       }
-      .certificate-image {
+      .certificate-image, .carousel-container {
+        height: 200px;
+      }
+      .carousel img {
         height: 200px;
       }
       h2.text-4xl {
@@ -345,6 +390,72 @@
             <img src="public/images/WHO-GMP_page-0001.jpg" alt="WHO-GMP" class="certificate-image rounded mb-4">
             <a href="public/certificates/WHO-GMP.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
           </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Make In India</h3>
+            <div class="carousel-container">
+              <div class="carousel" data-current="0">
+                <img src="public\images\make in india-images-0.jpg" alt="Make in India Page 1">
+                <img src="public/images/make in india-images-1.jpg" alt="Make in India Page 2">
+              </div>
+              <button class="carousel-btn prev-btn" aria-label="Previous Make in India certificate page"><i class="fas fa-chevron-left"></i></button>
+              <button class="carousel-btn next-btn" aria-label="Next Make in India certificate page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <a href="public/certificates/make in india.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">CVC Certificate</h3>
+            <img src="public\images\cvc.jpg" alt="CVC Certificate" class="certificate-image rounded mb-4">
+            <a href="public/certificates/cvc.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">MSME Certificate</h3>
+            <div class="carousel-container">
+              <div class="carousel" data-current="0">
+                <img src="public\images\msme (1)-images-0.jpg" alt="MSME Certificate Page 1">
+                <img src="public\images\msme (1)-images-1.jpg" alt="MSME Certificate Page 2">
+              </div>
+              <button class="carousel-btn prev-btn" aria-label="Previous MSME certificate page"><i class="fas fa-chevron-left"></i></button>
+              <button class="carousel-btn next-btn" aria-label="Next MSME certificate page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <a href="client/public/certificates/msme (1).pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Labour Certificate</h3>
+            <img src="public\images\Labour.jpg" alt="Labour Certificate" class="certificate-image rounded mb-4">
+            <a href="public/certificates/Labour.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">Pollution Certificate</h3>
+            <div class="carousel-container">
+              <div class="carousel" data-current="0">
+                <img src="public\images\pollution-images-0.jpg" alt="Pollution Certificate Page 1">
+                <img src="public\images\pollution-images-1.jpg" alt="Pollution Certificate Page 2">
+                <img src="public\images\pollution-images-2.jpg" alt="Pollution Certificate Page 3">
+                <img src="public\images\pollution-images-3.jpg" alt="Pollution Certificate Page 4">
+                <img src="public\images\pollution-images-4.jpg" alt="Pollution Certificate Page 5">
+              </div>
+              <button class="carousel-btn prev-btn" aria-label="Previous Pollution certificate page"><i class="fas fa-chevron-left"></i></button>
+              <button class="carousel-btn next-btn" aria-label="Next Pollution certificate page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <a href="public/certificates/pollution.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
+          <div class="certificate-card bg-white p-6 rounded-lg shadow-lg w-96 transform hover:scale-105 transition-transform duration-300 fade-in">
+            <h3 class="font-semibold text-xl mb-2">OEM Certificate</h3>
+            <div class="carousel-container">
+              <div class="carousel" data-current="0">
+                <img src="public\images\gem oem-images-0.jpg" alt="OEM Certificate Page 1">
+                <img src="public\images\gem oem-images-1.jpg" alt="OEM Certificate Page 2">
+                <img src="public\images\gem oem-images-2.jpg" alt="OEM Certificate Page 3">
+                <img src="public\images\gem oem-images-3.jpg" alt="OEM Certificate Page 4">
+                <img src="public\images\gem oem-images-4.jpg" alt="OEM Certificate Page 5">
+                <img src="public\images\gem oem-images-5.jpg" alt="OEM Certificate Page 6">
+                <img src="public\images\gem oem-images-6.jpg" alt="OEM Certificate Page 7">
+              </div>
+              <button class="carousel-btn prev-btn" aria-label="Previous OEM certificate page"><i class="fas fa-chevron-left"></i></button>
+              <button class="carousel-btn next-btn" aria-label="Next OEM certificate page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <a href="public/certificates/gem oem.pdf" class="text-teal-600 hover:text-teal-700 font-semibold">View Certificate</a>
+          </div>
         </div>
       </div>
     </section>
@@ -386,7 +497,7 @@
           <a href="products.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Products</a>
           <a href="services.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Services</a>
           <a href="contact.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Contact Us</a>
-          <a href="order.html" class="block text-sm text-white hover:text-teal-700 transition-colors">Order Now</a>
+          <a href="order.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Order Now</a>
           <a href="review.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Review Us</a>
           <a href="certifications.html" class="block text-sm text-white hover:text-teal-200 transition-colors">Certifications</a>
           <a href="about.html" class="block text-sm text-white hover:text-teal-200 transition-colors">About</a>
@@ -398,9 +509,10 @@
     </div>
   </footer>
 
-  <!-- JavaScript for Hamburger Menu -->
+  <!-- JavaScript for Hamburger Menu and Carousel -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Hamburger Menu
       const hamburger = document.querySelector('.hamburger');
       const nav = document.querySelector('nav');
 
@@ -423,6 +535,40 @@
         window.addEventListener('resize', checkViewport);
         checkViewport();
       }
+
+      // Carousel Functionality
+      document.querySelectorAll('.carousel-container').forEach(container => {
+        const carousel = container.querySelector('.carousel');
+        const prevBtn = container.querySelector('.prev-btn');
+        const nextBtn = container.querySelector('.next-btn');
+        const images = carousel.querySelectorAll('img');
+        const totalImages = images.length;
+        let currentIndex = parseInt(carousel.dataset.current) || 0;
+
+        const updateCarousel = () => {
+          carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex === totalImages - 1;
+        };
+
+        prevBtn.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            carousel.dataset.current = currentIndex;
+            updateCarousel();
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentIndex < totalImages - 1) {
+            currentIndex++;
+            carousel.dataset.current = currentIndex;
+            updateCarousel();
+          }
+        });
+
+        updateCarousel();
+      });
     });
   </script>
 </body>
